@@ -8,12 +8,12 @@ export const authenticateToken = (req: Request, res: Response, next) => {
 
 	if (token == null) return res.sendStatus(401);
 
-	jwt.verify(token, process.env.TOKEN_SECRET as string, (err: any, user: any) => {
+	jwt.verify(token, process.env.TOKEN_SECRET as string, (err: any, payload: any) => {
 		console.log(err);
 
 		if (err) return res.sendStatus(403);
 		Object.defineProperty(req, 'user', {
-			value: user,
+			value: payload,
 		});
 
 		next();
