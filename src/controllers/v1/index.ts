@@ -1,5 +1,11 @@
 import { Request, Response } from 'express';
+import { generateAccessToken } from '../../util/jwt';
+import { callController } from './call';
 
 export const testController = (req: Request, res: Response) => {
-	res.json({ message: 'test api url' });
+	const data = req.body;
+	const token = generateAccessToken(data);
+	res.json({ token: token });
 };
+
+export { callController };
