@@ -10,8 +10,9 @@ const PORT = process.env.PORT || 5050;
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
-app.use('/api', authenticateToken, APIRouterV1);
+app.use('/api', APIRouterV1);
 
 app.get('/', (req, res) => {
 	res.json({ message: true });
