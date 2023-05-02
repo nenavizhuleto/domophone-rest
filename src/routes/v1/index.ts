@@ -1,7 +1,11 @@
 import { Router } from 'express';
-import { testController } from '../../controllers/v1';
+import { testController, callController } from '../../controllers/v1';
+import { authenticateToken } from '../../middleware/auth';
 
-const testRouter = Router();
-testRouter.get('/test', testController);
+const TestRouterV1 = Router();
+TestRouterV1.get('/test', testController);
 
-export { testRouter };
+const MainRouterV1 = Router();
+MainRouterV1.get('/call', authenticateToken, callController);
+
+export { TestRouterV1, MainRouterV1 };
