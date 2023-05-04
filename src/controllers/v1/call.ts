@@ -19,7 +19,7 @@ export const callController = (req: Request, res: Response) => {
 			result: false,
 			message: 'Invalid request body.',
 		};
-		res.status(401).json(err);
+		res.status(405).json(err);
 		return;
 	}
 	const call_request: CallRequest = {
